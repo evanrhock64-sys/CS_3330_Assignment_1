@@ -6,7 +6,7 @@ public class Ticket {
     private final String studentName;
     private final TicketType ticketType;
     private final Event event;
-    private boolean cancelled;
+    private boolean canceled;
     private boolean admitted;
 
 
@@ -28,11 +28,11 @@ public class Ticket {
         this.studentName = studentName;
         this.ticketType = ticketType;
         this.event = event;
-        this.cancelled = false;
+        this.canceled = false;
         this.admitted = false;
     }
     public boolean isCancelled(){
-        return cancelled;
+        return canceled;
     }
     public boolean isAdmitted() {
         return admitted;
@@ -54,7 +54,7 @@ public class Ticket {
     }
     public boolean cancel(){
         if(isActive()){
-            cancelled = true;
+            canceled = true;
             return true;
         } else {
             return false;
@@ -63,12 +63,15 @@ public class Ticket {
     public int getId() {
         return id;
     }
+    public boolean isForEvent(Event other) {
+    	return this.event == other;
+    }
     @Override
     public String toString(){
         if(isActive()){
             return "Ticket #" + id + " for " + studentName + " to " + event.toString() + " (" + ticketType.toString() + ") - ACTIVE";
         } else if(isCancelled()){
-            return "Ticket #" + id + " for " + studentName + " to " + event.toString() + " (" + ticketType.toString() + ") - CANCELLED";
+            return "Ticket #" + id + " for " + studentName + " to " + event.toString() + " (" + ticketType.toString() + ") - CANCELED";
         } else {
             return "Ticket #" + id + " for " + studentName + " to " + event.toString() + " (" + ticketType.toString() + ") - ADMITTED";
         }
