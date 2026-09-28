@@ -3,7 +3,7 @@ package tickets;
 public class TicketBook {
 	private final Ticket[] tickets;
 	private int count;
-	
+
 	public TicketBook(int capacity) {
 		if (capacity <= 0) {
 			throw new IllegalArgumentException("Capacity must be positive");
@@ -11,7 +11,7 @@ public class TicketBook {
 		this.tickets = new Ticket[capacity];
 		this.count = 0;
 	}
-	
+
 	public Ticket createTicket(int id, Event event, TicketType type, String studentName) {
 		if (count >= tickets.length) {
 			throw new IllegalStateException("Ticket book is full (capacity " +tickets.length +")");
@@ -24,7 +24,7 @@ public class TicketBook {
 		count++;
 		return ticket;
 	}
-	
+
 	public Ticket findById(int id) {
 		for (int i = 0; i < count; i++) {
 			if (tickets[i].getId() == id) {
@@ -42,7 +42,7 @@ public class TicketBook {
 			System.out.println(tickets[i]);
 		}
 	}
-	
+	// Uses Ticket.isForEvent, which compares Event references (==) instead of equals. See the comment in Ticket.
 	public void printForEvent(Event event) {
 		if (event == null) {
 			throw new IllegalArgumentException("Event cannot be null");

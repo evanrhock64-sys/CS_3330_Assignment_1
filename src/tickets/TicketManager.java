@@ -1,22 +1,22 @@
 package tickets;
 
 public class TicketManager {
-	
+
 	private final TicketBook book;
 	private int nextId;
-	
+
 	public TicketManager(int capacity) {
 		this.book = new TicketBook(capacity);
-			this.nextId = 1;
+		this.nextId = 1;
 	}
-	
+
 	public int createTicket(Event event, TicketType type, String studentName) {
 		int id = nextId;
 		book.createTicket(id, event, type, studentName);
 		nextId++;
 		return id;
 	}
-	
+
 	public boolean cancelTicket(int id) {
 		Ticket ticket = requireTicket(id);
 		return ticket.cancel();
